@@ -13,10 +13,13 @@ const TableHeader = function(){
 
 const TableBody = (props) => {
 
-    const rows = props.tableData.map((row, index) => {
+    const {tableData, removeData} = props;
+
+    const rows = tableData.map((row, index) => {
         return(<tr key={index}>
             <td>{row.name}</td>
             <td>{row.job}</td>
+            <td><button className='btn btn-danger' onClick={() => removeData(index)}>Delete</button></td>
         </tr>);
     });
 
@@ -30,11 +33,11 @@ class Table extends Component{
 
     render(){
         
-        const {tableData} = this.props
+        const {tableData, removeData} = this.props
         return (
             <table className='table'>
                 <TableHeader />
-                <TableBody tableData={tableData}/>
+                <TableBody tableData={tableData} removeData={removeData} />
             </table>
         );
     }
