@@ -1,25 +1,12 @@
 import React from 'react';
 import Table from './Table';
+import Form from './Form';
 
 class App extends React.Component{
 
     state = {
 
-        tableData: [
-            {
-                name: "Dabira",
-                job: "Doctor",
-            },
-            {
-                name: "Akiva",
-                job: "God's servent",
-            },
-            {
-                name: "Amram",
-                job: "Business man",
-            },
-    
-        ]
+        tableData: []
 
     }
 
@@ -35,6 +22,12 @@ class App extends React.Component{
 
     }
 
+    handleSubmit = (submitedData) => {
+        this.setState({
+            tableData: [...this.state.tableData, submitedData]
+        });
+    }
+
     render(){
 
         const {tableData} = this.state;
@@ -43,6 +36,7 @@ class App extends React.Component{
             <div className='container'>
                 <h1>Hello World!</h1>
                 <Table tableData={tableData} removeData={this.removeData} />
+                <Form handleSubmit={this.handleSubmit} />
             </div>
         );
     }
