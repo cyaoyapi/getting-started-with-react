@@ -11,23 +11,17 @@ const TableHeader = function(){
     );
 };
 
-const TableBody = () => {
+const TableBody = (props) => {
+
+    const rows = props.tableData.map((row, index) => {
+        return(<tr key={index}>
+            <td>{row.name}</td>
+            <td>{row.job}</td>
+        </tr>);
+    });
 
     return(
-        <tbody>
-            <tr>
-                <td>Dabira</td>
-                <td>Doctor</td>
-            </tr>
-            <tr>
-                <td>Akiva</td>
-                <td>God's servent.</td>
-            </tr>
-            <tr>
-                <td>Amram</td>
-                <td>Business man</td>
-            </tr>
-        </tbody>
+        <tbody>{rows}</tbody>
     );
 
 };
@@ -35,10 +29,12 @@ const TableBody = () => {
 class Table extends Component{
 
     render(){
+        
+        const {tableData} = this.props
         return (
             <table className='table'>
                 <TableHeader />
-                <TableBody />
+                <TableBody tableData={tableData}/>
             </table>
         );
     }
